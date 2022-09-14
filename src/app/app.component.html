@@ -1,38 +1,4 @@
-<h3>Contacts</h3>
-<hr>
-<div class="card" [formGroup]="formCategorias">
-  <div class="card-header">
-    <label>Categorias</label>
-    <button class="btn btn-outline-primary ms-5" (click)="addNewCategoria()">Adicionar Categoria</button>
-    <hr>
-    <ng-container formArrayName="categorias" *ngFor="let o of categorias.controls; let i = index">
-
-      <b>Categoria {{i+1}}</b> <button class="btn btn-outline-danger mx-3 mt-3"
-        (click)="removeCategoria(i)">&times;</button>
-      <hr>
-
-      <div class="row mt-2" [formGroupName]="i">
-        <div class="col-md-2">Descrição</div>
-        <div class="col-md-4">
-          <input formControlName="descricao" type="text" class="form-control">
-        </div>
-      </div>
-      <label>Grupos</label>
-      <button class="btn btn-outline-primary ms-5" (click)="addNewGrupo()">Adicionar Grupo</button>
-      <hr>
-      <ng-container formArrayName="grupos" *ngFor="let o of grupos.controls; let i = index">
-        <b>Grupo {{i+1}}</b> <button class="btn btn-outline-danger mx-3 mt-3" (click)="removeGrupo(i)">&times;</button>
-        <hr>
-        <div class="row mt-2" [formGroupName]="i">
-          <div class="col-md-2">Nome do Grupo</div>
-          <div class="col-md-4">
-            <input formControlName="nomeGrupo" type="text" class="form-control">
-          </div>
-        </div>
-      </ng-container>
-    </ng-container>
-  </div>
-  <div class="card-footer text-center">
-    <button (click)="onSubmit()" class="btn btn-primary">Save</button>
-  </div>
+<div style="height: 100%; width: 100%; background-image: url('assets/images/fundo-sorteio.png'); background-attachment: fixed;">
+  <router-outlet></router-outlet>
 </div>
+

@@ -1,0 +1,61 @@
+<div class="container" style="padding: 150px; padding-left: 15%;">
+
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
+      aria-expanded="false">
+      Categorias
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+      <li><a class="dropdown-item" href="/cadastro">Cadastrar</a></li>
+      <hr/>
+      <li><a class="dropdown-item" href="#" (click)="selecionarCategoria('')">Todos</a></li>
+      <li><a class="dropdown-item" href="#" (click)="selecionarCategoria(categoria.descricao)" *ngFor="let categoria of response.categorias.sort(compare)">{{categoria.descricao}}</a>
+      </li>
+    </ul>
+  </div>
+<br /><br />
+  <div *ngFor="let categoria of  getCategoriaSelecionada()">
+    <label style="font-size: 20px;">{{categoria.descricao}}</label>
+    <div class="row">
+      <div class="col-4" *ngFor="let grupo of categoria.grupos">
+        <div>
+          <table
+            style="height: 250px; width: 250px; background-image:  url('assets/images/grupos-caixa-ok.png'); background-size : 100% 100%">
+            <tr style="height: 61px;">
+              <td style="text-align: center; padding-top: 15px; vertical-align: top;line-height: 20px">
+                <label>GRUPO {{grupo.nomeGrupo}}</label>
+              </td>
+            </tr>
+            <tr>
+              <td style="padding-left: 30px; text-align: left; vertical-align: top;line-height: 20px">
+                <label style="display: block;font-size: 12px !important;" *ngFor="let time of grupo.times; let i = index">{{i + 1}}. {{time}}</label>
+              </td>
+            </tr>
+          </table>
+        </div>
+
+      </div>
+
+      <div class="row"
+        style="min-height: 250px; width: 980px; background-image:  url('assets/images/CAIXA-INFERIOR.png'); background-size : 100% 100%;text-align:center;padding-top: 20px;">
+        <div class="col">
+          <div class="ps-5">
+            <label style="font-size: 50px;">Times Participantes</label>>
+            <br />
+            <label style="font-size: 12px; margin-left: 20px;"
+              *ngFor="let time of categoria.times">{{time.nomeTime}}</label>
+          </div>
+        </div>
+        <div class="col-1">
+          <label class="float-end pt-3 pe-2">
+            <button class="btn btn-info" (click)="preSorteio(categoria)">Sortear</button>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="sorteando" style="position: fixed; top: 20%; left: 45%;">
+  <img src="assets/images/loading.gif">
+</div>

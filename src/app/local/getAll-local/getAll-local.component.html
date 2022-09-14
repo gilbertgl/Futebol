@@ -1,0 +1,40 @@
+<div class="container">
+  <div *ngFor="let categoria of response.categorias; let c = index">
+    <label>Categoria {{c + 1}}</label>
+    <button (click)="onDeleteCategoria(c)" class="ms-2">delete</button>
+    <hr>
+    <label>Descrição:</label>
+    <input type="text" [(ngModel)]="categoria.descricao" />
+
+    <div *ngFor="let grupo of categoria.grupos; let g = index">
+      <label>Grupo {{g + 1}}:</label>
+      <input type="text" [(ngModel)]="grupo.nomeGrupo" />
+      <button (click)="onDeleteGrupo(c, g)" class="ms-2">delete</button>
+    </div>
+
+    <div *ngFor="let time of categoria.times; let t = index">
+      <label>Time {{t + 1}}:</label>
+      <input type="text" [(ngModel)]="time.nomeTime" />
+      <button (click)="onDeleteTime(c, t)" class="ms-2">delete</button>
+      <hr>
+    </div>
+  </div>
+  <button (click)="onSubmit()" class="ms-2">save</button>
+
+
+<!-- <div>
+
+  <table style="color: #fff; font-family: Verdana, Geneva, Tahoma, sans-serif; height: 150px; width: 150px; background-image:  url('assets/images/grupos-caixa-ok.png'); background-size : 100% 100%">
+
+  <th style="text-align: center">
+    Grupo A
+  </th>
+  <tr>
+    time 1
+  </tr>
+
+  </table>
+
+</div> -->
+
+</div>

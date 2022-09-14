@@ -1,0 +1,58 @@
+<div class="container" style="padding: 120px; padding-left: 25%">
+  <form [formGroup]="formCategorias" (ngSubmit)="onSubmit()">
+
+    <div formArrayName="categorias">
+      <div *ngFor="let categoria of categorias().controls; let categoriaIndex=index">
+        <div [formGroupName]="categoriaIndex" style="padding: 10px; margin: 5px;">
+          <label class="pb-3">Categoria {{categoriaIndex + 1}}</label>
+          <div class="row">
+            <label for="descricao" class="col-2">Descrição:</label>
+            <input type="text" formControlName="descricao" class="col mx-2" />
+          </div>
+          <hr>
+
+          <div formArrayName="grupos">
+            <div *ngFor="let grupo of grupos(categoriaIndex).controls; let grupoIndex=index">
+              <div [formGroupName]="grupoIndex">
+                <div class="row mt-2">
+                  <label for="nomeGrupo" class="col-2">Grupo {{grupoIndex + 1}}</label>
+                  <input type="text" formControlName="nomeGrupo" class="col mx-2" />
+                  <button class="float-end col-3" (click)="removeGrupo(categoriaIndex, grupoIndex)">Remover
+                    Grupo</button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr>
+
+          <div formArrayName="times">
+            <div *ngFor="let time of times(categoriaIndex).controls; let timesIndex=index">
+              <div [formGroupName]="timesIndex">
+                <div class="row mt-2">
+                  <label for="nomeTime" class="col-2">Time {{timesIndex + 1}}</label>
+                  <input type="text" formControlName="nomeTime" class="col mx-2" />
+                </div>
+                <div class="row">
+                  <label for="nomeTime">
+                    <input type="checkbox" formControlName="cabecaDeChave">
+                    Cabeça de chave
+                    <button class="float-end col-3 mt-1" (click)="removeTime(categoriaIndex, timesIndex)">Remover
+                      Time</button>
+                  </label>
+
+                </div>
+
+              </div>
+            </div>
+          </div>
+          <button type="button" class="mt-2 me-2" (click)="addNewGrupo(categoriaIndex)">Adicionar Grupo</button>
+          <button type="button" class="mt-2" (click)="addNewTime(categoriaIndex)">Adicionar Time</button>
+          <button (click)="removeCategoria(categoriaIndex)" class="float-end mt-2">Remover Categoria</button>
+        </div>
+      </div>
+      <br />
+      <button type="button" class="mt-2 ms-3" (click)="addNewCategoria()">Adicionar Categoria</button>
+      <button class="mx-2" type="submit">Salvar</button>
+    </div>
+  </form>
+</div>
